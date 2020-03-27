@@ -20,6 +20,6 @@ fread(args[1]) %>%
   mutate(`City` = ifelse(Admin2=="", `Province/State`, Admin2)) %>%
   mutate(City = ifelse((`Country/Region`=="US")&(`City`!=`Province/State`), paste(City, `Province/State`,sep="/"), City)) %>%
   mutate(`Date` = strsplit(`Date`," |T")[[1]][1]) %>%
-  mutate(`Date` = ifelse(grepl("/", `Date`),paste(paste0("20",strsplit(`Date`,"/")[[1]][3]),strsplit(`Date`,"/")[[1]][1],strsplit(`Date`,"/")[[1]][2],sep="-"),`Date`)) %>% View()
+  mutate(`Date` = ifelse(grepl("/", `Date`),paste(paste0("20",strsplit(`Date`,"/")[[1]][3]),strsplit(`Date`,"/")[[1]][1],strsplit(`Date`,"/")[[1]][2],sep="-"),`Date`)) %>%
   select(`City`,`Province/State`,`Country/Region`,`Date`,`Confirmed`, `Deaths`,`Recovered`) %>%
   fwrite(file = "data.csv", append = TRUE, quote = FALSE, sep = ",", col.names = FALSE)
