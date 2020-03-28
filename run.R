@@ -19,6 +19,7 @@ fread(args[1]) %>%
   mutate(`Country/Region` = gsub("Gambia, The","Gambia", `Country/Region`)) %>%
   mutate(`Country/Region` = gsub("Korea, South","South Korea", `Country/Region`)) %>%
   mutate(`Country/Region` = gsub("Republic of Korea","South Korea", `Country/Region`)) %>%
+  mutate(`Country/Region` = gsub("^China","Mainland China", `Country/Region`)) %>%
   mutate(`Province/State` = ifelse(grepl(",", `Province/State`), gsub(", ", ",",`Province/State`), paste0("City,",`Province/State`))) %>%
   separate(`Province/State`, into = c("City", "Province/State"), sep=",") %>%
   mutate(`Province/State` = ifelse(`Province/State`=="", `Country/Region`, `Province/State`)) %>%
